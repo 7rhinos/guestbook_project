@@ -17,7 +17,7 @@ jobs:
 
    env:
       JOB_NAME: "guestbook_project"
-      JFrog_Project: "demowei"
+      JFrog_Project: "Jiaqi_Project"
   
    steps:
    # This action checks out the code from the repository
@@ -36,16 +36,20 @@ jobs:
          ${{ runner.os }}-maven-
 
    # This action sets up the JFrog CLI with the Artifactory URL and access token     
-   #- uses: jfrog/setup-jfrog-cli@v4
-   #  env:
-   #    JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}
    - name: Setup JFrog CLI
-     uses: jfrog/setup-jfrog-cli@v4.3.2
+     uses: jfrog/setup-jfrog-cli@v4
      env:
-       JF_URL: https://soleng.jfrog.io
-     with:
-       oidc-provider-name: liwei-github-oidc 
-       oidc-audience: jfrog-github
+       JF_URL: ${{ secrets.JF_URL }}
+       JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+
+  
+   # - name: Setup JFrog CLI
+   #   uses: jfrog/setup-jfrog-cli@v4.3.2
+   #   env:
+   #     JF_URL: https://soleng.jfrog.io
+   #   with:
+   #     oidc-provider-name: liwei-github-oidc 
+   #     oidc-audience: jfrog-github
 
 
 
